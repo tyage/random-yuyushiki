@@ -9,7 +9,7 @@ $(function() {
     history.pushState(null, null, '?' + $.param(params));
   };
   var setImageParam = function(index, image) {
-    var images = params.images.split(',');
+    var images = params.images ? params.images.split(',') : [];
     images[index] = image;
     params.images = images.join(',');
   };
