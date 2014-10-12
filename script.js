@@ -13,7 +13,7 @@ $(function() {
       var p = param.split('=');
       params[p[0]] = p[1];
     });
-    var images = params.images.length > 0 ? params.images.split(',') : generateImages();
+    var images = params.images ? params.images.split(',') : generateImages();
     var base = params.base || '';
 
     $('#images').empty();
