@@ -34,17 +34,28 @@ $(function() {
     };
     var images = params.images ? params.images.split(',') : generateImages();
     var base = params.base || '';
+    $.fn.randomize = function() {
+      var id = randomImage();
+      var url = base + data[id].path;
+      var index = $(this).parent().children().index(this);
+      $(this).attr('src', url);
+      setImageParam(index, id);
+      return this;
+    };
 
     $('#images').empty();
-    _.each(images, function(image, i) {
+    _.each(images, function(image) {
       var url = base + data[image].path;
       $('<img>').attr('src', url).click(function() {
-        var id = randomImage();
-        var url = base + data[id].path;
-        $(this).attr('src', url);
-        setImageParam(i, id);
+        $(this).randomize();
         rehash();
       }).appendTo('#images');
+    });
+    $('#random-images').click(function() {
+      $('#images img').each(function() {
+        $(this).randomize();
+      });
+      rehash();
     });
   });
 });
