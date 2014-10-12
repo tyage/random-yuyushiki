@@ -43,6 +43,7 @@ $(function() {
         var url = base + data[id].path;
         $(this).attr('src', url);
         setImageParam(i, id);
+        rehash();
       }).appendTo('#images');
     });
   });
