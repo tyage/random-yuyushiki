@@ -2,8 +2,12 @@ $(function() {
   $.getJSON('yuyushiki/yuyushiki.json').done(function(data) {
     var generateImages = function() {
       var images = [];
+      var usedData = _(data).filter(function(image) {
+        return !image.useless;
+      });
       for (var i = 0; i < 4; ++i) {
-        images.push(Math.floor(Math.random() * data.length));
+        var image = usedData[Math.floor(Math.random() * usedData.length)];
+        images.push(_.indexOf(data, image));
       }
       return images;
     };
@@ -17,7 +21,7 @@ $(function() {
     var base = params.base || '';
 
     $('#images').empty();
-    images.forEach(function(image) {
+    _.each(images, function(image) {
       var url = base + data[image].path;
       $('<img>').attr('src', url).appendTo('#images');
     });
