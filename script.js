@@ -56,6 +56,7 @@ $(function() {
         $(this).randomize();
       });
       rehash();
+      return false;
     });
   });
 });
