@@ -1,13 +1,16 @@
 $(function() {
   $.getJSON('yuyushiki/yuyushiki.json').done(function(data) {
+    var usedData = _.filter(data, function(image) {
+      return !image.useless;
+    });
+    var randomImage = function() {
+      var image = usedData[Math.floor(Math.random() * usedData.length)];
+      return _.indexOf(data, image);
+    };
     var generateImages = function() {
       var images = [];
-      var usedData = _.filter(data, function(image) {
-        return !image.useless;
-      });
       for (var i = 0; i < 4; ++i) {
-        var image = usedData[Math.floor(Math.random() * usedData.length)];
-        images.push(_.indexOf(data, image));
+        images.push(randomImage());
       }
       return images;
     };
@@ -23,7 +26,10 @@ $(function() {
     $('#images').empty();
     _.each(images, function(image) {
       var url = base + data[image].path;
-      $('<img>').attr('src', url).appendTo('#images');
+      $('<img>').attr('src', url).click(function() {
+        var url = base + data[randomImage()].path;
+        $(this).attr('src', url);
+      }).appendTo('#images');
     });
   });
 });
