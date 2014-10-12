@@ -2,7 +2,7 @@ $(function() {
   $.getJSON('yuyushiki/yuyushiki.json').done(function(data) {
     var generateImages = function() {
       var images = [];
-      var usedData = _(data).filter(function(image) {
+      var usedData = _.filter(data, function(image) {
         return !image.useless;
       });
       for (var i = 0; i < 4; ++i) {
