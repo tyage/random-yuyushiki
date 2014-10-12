@@ -1,0 +1,3 @@
+[submodule "yuyushiki"]
+	path = yuyushiki
+	url = git@github.com:non117/yuyushiki.git
