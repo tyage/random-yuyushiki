@@ -38,6 +38,9 @@ $(function() {
       var path = randomImage();
       var index = $(this).parent().children().index(this);
 
+      // load image before slot end
+      $('<img>').attr('src', base + path);
+
       // slot start
       var img = this;
       var i = 0;
