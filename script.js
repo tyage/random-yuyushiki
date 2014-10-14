@@ -16,7 +16,7 @@ $(function() {
 
   $.getJSON('yuyushiki/yuyushiki.json').done(function(data) {
     var usedData = _.filter(data, function(image) {
-      return !image.useless;
+      return !image.useless && !image.reedit;
     });
     var randomImage = function() {
       var image = usedData[Math.floor(Math.random() * usedData.length)];
