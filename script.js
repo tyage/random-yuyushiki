@@ -47,7 +47,7 @@ $(function() {
       time = time === undefined ? 10 : time;
       var timer = setInterval(function() {
         ++i;
-        $(img).attr('src', images[i % images.length]);
+        $(img).attr('src', base + images[i % images.length]);
         if (i > time) {
           clearInterval(timer);
           $(img).attr('src', url);
