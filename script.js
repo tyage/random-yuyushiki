@@ -38,7 +38,6 @@ $(function() {
       var path = randomImage();
       var url = base + path;
       var index = $(this).parent().children().index(this);
-      setImageParam(index, path);
 
       // slot start
       var img = this;
@@ -53,6 +52,8 @@ $(function() {
           $(img).attr('src', url);
         }
       }, 50);
+
+      setImageParam(index, path);
 
       return this;
     };
