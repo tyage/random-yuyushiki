@@ -50,6 +50,7 @@ $(function() {
           clearInterval(timer);
           $(img).attr('src', base + path);
           setImageParam(index, path);
+          rehash();
         }
       }, 50);
 
@@ -61,14 +62,12 @@ $(function() {
       var url = base + image;
       $('<img>').attr('src', url).click(function() {
         $(this).randomize();
-        rehash();
       }).appendTo('#images');
     });
     $('#random-images').click(function() {
       $('#images img').each(function(i) {
         $(this).randomize((i + 1) * 10);
       });
-      rehash();
       return false;
     });
   });
