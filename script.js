@@ -67,8 +67,8 @@ $(function() {
       }).appendTo('#images');
     });
     $('#random-images').click(function() {
-      $('#images img').each(function() {
-        $(this).randomize();
+      $('#images img').each(function(i) {
+        $(this).randomize((i + 1) * 10);
       });
       rehash();
       return false;
