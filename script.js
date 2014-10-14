@@ -20,7 +20,7 @@ $(function() {
     });
     var randomImage = function() {
       var image = usedData[Math.floor(Math.random() * usedData.length)];
-      return _.indexOf(data, image);
+      return image.path;
     };
     var generateImages = function() {
       var images = [];
@@ -35,17 +35,17 @@ $(function() {
     var images = params.images ? params.images.split(',') : generateImages();
     var base = params.base || '';
     $.fn.randomize = function() {
-      var id = randomImage();
-      var url = base + data[id].path;
+      var path = randomImage();
+      var url = base + path;
       var index = $(this).parent().children().index(this);
       $(this).attr('src', url);
-      setImageParam(index, id);
+      setImageParam(index, path);
       return this;
     };
 
     $('#images').empty();
     _.each(images, function(image) {
-      var url = base + data[image].path;
+      var url = base + image;
       $('<img>').attr('src', url).click(function() {
         $(this).randomize();
         rehash();
