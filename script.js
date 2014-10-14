@@ -36,7 +36,6 @@ $(function() {
     var base = params.base || '';
     $.fn.randomize = function(time) {
       var path = randomImage();
-      var url = base + path;
       var index = $(this).parent().children().index(this);
 
       // slot start
@@ -49,11 +48,10 @@ $(function() {
         $(img).attr('src', base + images[i % images.length]);
         if (i > time) {
           clearInterval(timer);
-          $(img).attr('src', url);
+          $(img).attr('src', base + path);
+          setImageParam(index, path);
         }
       }, 50);
-
-      setImageParam(index, path);
 
       return this;
     };
